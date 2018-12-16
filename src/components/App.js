@@ -1,10 +1,10 @@
 import React from "react";
-import Steps from "../components/Steps";
-import Basic from "./Basic";
-import Contacts from "./Contacts";
-import Avatar from "./Avatar";
-import Finish from "./Finish";
-import Buttons from "./Buttons";
+import Steps from "./FormHeader/Steps";
+import Basic from "./FormSteps/Basic";
+import Contacts from "./FormSteps/Contacts";
+import Avatar from "./FormSteps/Avatar";
+import Finish from "./FormSteps/Finish";
+import Buttons from "./FormBottomNav/Buttons";
 
 export default class App extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ export default class App extends React.Component {
         city: "",
         mobile: "5555555555",
         avatar: "",
-        email: ""
+        email: "machulsky@gmail.com"
       },
       steps: [
         {
@@ -86,19 +86,41 @@ export default class App extends React.Component {
 
   resetAllInfo = () => {
     this.setState({
-      activeStep: 1,
+      activeStep: 0,
       values: {
         firstname: "",
         lastname: "",
         password: "",
         repeatPassword: "",
-        gender: "",
+        gender: "female",
         country: "",
         city: "",
         mobile: "",
         avatar: "",
         email: ""
-      }
+      },
+      steps: [
+        {
+          isActive: true,
+          isCompleted: false,
+          name: "Basic"
+        },
+        {
+          isActive: false,
+          isCompleted: false,
+          name: "Contacts"
+        },
+        {
+          isActive: false,
+          isCompleted: false,
+          name: "Avatar"
+        },
+        {
+          isActive: false,
+          isCompleted: false,
+          name: "Finish"
+        }
+      ]
     });
   };
 
@@ -154,18 +176,18 @@ export default class App extends React.Component {
   };
 
   handleNextStep = () => {
-    const { activeStep } = this.state;
+    const { activeStep, steps } = this.state;
     const errors = this.validateValues();
     if (Object.keys(errors).length !== 0) {
-      const newSteps = [...this.state.steps];
-      const newActiveSteps = activeStep + 1;
-      newSteps[activeStep].isActive = false;
-      newSteps[newActiveSteps].isActive = true;
-      newSteps[activeStep].isCompleted = true;
       this.setState({
         errors
       });
     } else {
+      const newSteps = [...steps];
+      newSteps[activeStep].isActive = false;
+      newSteps[activeStep].isCompleted = true;
+      const newActiveSteps = activeStep + 1;
+      newSteps[newActiveSteps].isActive = true;
       this.setState({
         activeStep: activeStep + 1,
         errors: {}
@@ -179,6 +201,7 @@ export default class App extends React.Component {
     const newSteps = [...steps];
     const newActiveSteps = activeStep - 1;
     newSteps[activeStep].isActive = false;
+    newSteps[newActiveSteps].isCompleted = false;
     newSteps[newActiveSteps].isActive = true;
     this.setState({
       activeStep: activeStep - 1

@@ -17,7 +17,7 @@ const Field = props => {
       <input
         id={id}
         type={type}
-        className="form-control"
+        className={error ? "form-control invalid" : "form-control"}
         placeholder={placeholder}
         name={name}
         value={value}

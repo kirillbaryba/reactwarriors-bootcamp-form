@@ -1,6 +1,6 @@
 import React from "react";
-import cities from "../data/cities";
-import countries from "../data/countries";
+import cities from "../../data/cities";
+import countries from "../../data/countries";
 
 const Finish = props => {
   const country = countries.filter(
