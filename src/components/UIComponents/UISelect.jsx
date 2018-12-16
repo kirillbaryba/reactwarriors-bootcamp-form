@@ -10,6 +10,7 @@ const UISelect = props => {
         name={name}
         id={id}
         onChange={onChange}
+        value={value}
       >
         <option value="">Select {labelText}</option>
         {getOptions(props.array)}

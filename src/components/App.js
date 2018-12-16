@@ -13,14 +13,14 @@ export default class App extends React.Component {
     this.state = {
       activeStep: 0,
       values: {
-        firstname: "spade",
-        lastname: "spade",
-        password: "123123",
-        repeatPassword: "123123",
+        firstname: "",
+        lastname: "",
+        password: "",
+        repeatPassword: "",
         gender: "female",
         country: "",
         city: "",
-        mobile: "5555555555",
+        mobile: "",
         avatar: "",
         email: "machulsky@gmail.com"
       },
@@ -50,11 +50,24 @@ export default class App extends React.Component {
     };
   }
 
+  onBlur = e => {
+    this.setState({
+      errors: {
+        ...this.state.errors,
+        [e.target.name]: null
+      }
+    });
+  };
+
   handleCountryChange = e => {
     this.setState({
       values: {
         ...this.state.values,
         country: e.target.value
+      },
+      errors: {
+        ...this.state.errors,
+        country: ""
       }
     });
   };
@@ -64,6 +77,10 @@ export default class App extends React.Component {
       values: {
         ...this.state.values,
         city: e.target.value
+      },
+      errors: {
+        ...this.state.errors,
+        city: ""
       }
     });
   };
@@ -248,12 +265,18 @@ export default class App extends React.Component {
         <form className="form card-body">
           <Steps steps={steps} activeStep={activeStep} />
           {activeStep === 0 ? (
-            <Basic onChange={this.onChange} values={values} errors={errors} />
+            <Basic
+              onBlur={this.onBlur}
+              onChange={this.onChange}
+              values={values}
+              errors={errors}
+            />
           ) : (
             false
           )}
           {activeStep === 1 ? (
             <Contacts
+              onBlur={this.onBlur}
               onChange={this.onChange}
               values={values}
               handleCountryChange={this.handleCountryChange}

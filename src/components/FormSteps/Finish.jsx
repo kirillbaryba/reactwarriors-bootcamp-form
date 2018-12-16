@@ -2,20 +2,15 @@ import React from "react";
 import cities from "../../data/cities";
 import countries from "../../data/countries";
 
-const Finish = props => {
+const getUserCountry = (array, currentCountry) => {
   const country = countries.filter(
-    c => String(c.id) === String(props.values.country)
+    c => String(c.id) === String(currentCountry)
   );
-  let city = "";
-  for (const key in cities) {
-    country.map(c => {
-      if (String(c.id) === String(cities[key].country)) {
-        city = cities[props.values.city].name;
-        return city;
-      }
-    });
-  }
+  return country[0].name;
+};
 
+const Finish = props => {
+  const cityName = cities[props.values.city].name;
   return (
     <React.Fragment>
       <div className="container">
@@ -45,7 +40,8 @@ const Finish = props => {
             </div>
             <div>
               <b>Location: </b>
-              {country.map(c => c.name)}, {city}
+              {getUserCountry(countries, props.values.country)},
+               {cityName}
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ const Basic = props => {
         value={props.values.firstname}
         onChange={props.onChange}
         error={props.errors.firstname}
+        onBlur={props.onBlur}
       />
       <Field
         id="lastname"
@@ -23,6 +24,7 @@ const Basic = props => {
         value={props.values.lastname}
         onChange={props.onChange}
         error={props.errors.lastname}
+        onBlur={props.onBlur}
       />
 
       <Field
@@ -34,10 +36,11 @@ const Basic = props => {
         value={props.values.password}
         onChange={props.onChange}
         error={props.errors.password}
+        onBlur={props.onBlur}
       />
 
       <Field
-        id="password"
+        id="repeatPassword"
         labelText="Repeat password"
         type="password"
         placeholder="Repeat password"
@@ -45,6 +48,7 @@ const Basic = props => {
         value={props.values.repeatPassword}
         onChange={props.onChange}
         error={props.errors.repeatPassword}
+        onBlur={props.onBlur}
       />
 
       <div className="form-group">

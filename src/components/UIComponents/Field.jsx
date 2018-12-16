@@ -9,6 +9,7 @@ const Field = props => {
     name,
     value,
     onChange,
+    onBlur,
     error
   } = props;
   return (
@@ -22,6 +23,7 @@ const Field = props => {
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       />
       {error ? <div className="invalid-feedback">{error}</div> : null}
     </div>

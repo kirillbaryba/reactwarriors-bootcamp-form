@@ -24,7 +24,6 @@ class Contacts extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props);
     return (
       <React.Fragment>
         <Field
@@ -36,6 +35,7 @@ class Contacts extends React.PureComponent {
           value={this.props.values.email}
           onChange={this.props.onChange}
           error={this.props.errors.email}
+          onBlur={this.props.onBlur}
         />
         <Field
           id="mobile"
@@ -46,6 +46,7 @@ class Contacts extends React.PureComponent {
           value={this.props.values.mobile}
           onChange={this.props.onChange}
           error={this.props.errors.mobile}
+          onBlur={this.props.onBlur}
         />
         <UISelect
           id="country"
@@ -56,6 +57,7 @@ class Contacts extends React.PureComponent {
           getOptions={this.buildSelect}
           error={this.props.errors.country}
           onChange={this.props.handleCountryChange}
+          onBlur={this.props.onBlur}
         />
         <div className="form-group">
           <label htmlFor="city">City</label>
@@ -67,6 +69,7 @@ class Contacts extends React.PureComponent {
             id="city"
             value={this.props.values.city}
             onChange={this.props.handleCityChange}
+            onBlur={this.props.onBlur}
           >
             <option value="">Select City</option>
             {this.buildSelect(
