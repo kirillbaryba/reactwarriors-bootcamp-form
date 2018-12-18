@@ -6,7 +6,10 @@ import Avatar from "./FormSteps/Avatar";
 import Finish from "./FormSteps/Finish";
 import Buttons from "./FormBottomNav/Buttons";
 
-export default class App extends React.Component {
+const hoc = c => c;
+
+@hoc
+class App extends React.Component {
   constructor() {
     super();
 
@@ -309,3 +312,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;
