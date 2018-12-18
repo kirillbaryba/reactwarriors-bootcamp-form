@@ -1,5 +1,12 @@
 import React from "react";
 import Field from "../UIComponents/Field";
+import { observer } from "mobx-react";
+
+class Test extends React.PureComponent {
+  render() {
+    return <div>sdfsdfs</div>;
+  }
+}
 
 const Basic = props => {
   return (
@@ -78,8 +85,9 @@ const Basic = props => {
           <label htmlFor="female">Female</label>
         </div>
       </div>
+      <Test values={props.values} />
     </React.Fragment>
   );
 };
 
-export default Basic;
+export default observer(Basic);

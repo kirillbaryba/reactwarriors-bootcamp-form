@@ -5,10 +5,13 @@ import Contacts from "./FormSteps/Contacts";
 import Avatar from "./FormSteps/Avatar";
 import Finish from "./FormSteps/Finish";
 import Buttons from "./FormBottomNav/Buttons";
+import { inject, observer } from "mobx-react";
 
-const hoc = c => c;
-
-@hoc
+@inject(({ formStore }) => ({
+  values: formStore.values,
+  onChange: formStore.onChange
+}))
+@observer
 class App extends React.Component {
   constructor() {
     super();
@@ -262,7 +265,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { activeStep, errors, values, steps } = this.state;
+    const { activeStep, errors, steps } = this.state;
+    const { values, onChange } = this.props;
+    console.log(values);
     return (
       <div className="form-container card">
         <form className="form card-body">
@@ -270,7 +275,7 @@ class App extends React.Component {
           {activeStep === 0 ? (
             <Basic
               onBlur={this.onBlur}
-              onChange={this.onChange}
+              onChange={onChange}
               values={values}
               errors={errors}
             />

@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 const Field = props => {
   const {
@@ -30,4 +31,4 @@ const Field = props => {
   );
 };
 
-export default Field;
+export default observer(Field);
