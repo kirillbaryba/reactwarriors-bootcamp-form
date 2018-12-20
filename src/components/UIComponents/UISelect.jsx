@@ -1,7 +1,7 @@
 import React from "react";
 
 const UISelect = props => {
-  const { id, labelText, name, value, onChange, getOptions, error } = props;
+  const { id, labelText, name, value, onChange, array, error } = props;
   return (
     <div className="form-group">
       <label htmlFor={id}>{labelText}</label>
@@ -13,7 +13,11 @@ const UISelect = props => {
         value={value}
       >
         <option value="">Select {labelText}</option>
-        {getOptions(props.array)}
+        {array.map(item => (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        ))}
       </select>
       {error ? <div className="invalid-feedback">{error}</div> : null}
     </div>

@@ -1,20 +1,24 @@
 import React from "react";
 import classNames from "classnames";
+import { inject, observer } from "mobx-react";
 
-export default class Steps extends React.Component {
-
+@inject(({ formStore }) => ({
+  steps: formStore.steps
+}))
+@observer
+class Steps extends React.Component {
   getStepClassName = step => {
+    const { steps } = this.props;
     return classNames("step", {
-      "is-active": this.props.steps[step].isActive,
-      "is-completed": this.props.steps[step].isCompleted
+      "is-active": steps[step].isActive,
+      "is-completed": steps[step].isCompleted
     });
   };
 
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
-        <div className="steps mb-4">
+        <div className="steps mt-4">
           <div className={this.getStepClassName(0)}>
             <div className="step__marker">1</div>
             <div className="step__title">Basic</div>
@@ -36,3 +40,5 @@ export default class Steps extends React.Component {
     );
   }
 }
+
+export default Steps;

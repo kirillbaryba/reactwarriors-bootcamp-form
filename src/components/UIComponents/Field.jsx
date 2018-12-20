@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 const Field = props => {
   const {
@@ -12,6 +13,7 @@ const Field = props => {
     onBlur,
     error
   } = props;
+
   return (
     <div className="form-group">
       <label htmlFor={id}>{labelText}</label>
@@ -30,4 +32,4 @@ const Field = props => {
   );
 };
 
-export default Field;
+export default observer(Field);
